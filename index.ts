@@ -1,27 +1,6 @@
 import { generateSecretKey, getPublicKey, finalizeEvent, verifyEvent, Relay } from 'nostr-tools';
 import WebSocket from 'ws';
 
-// Generate secret and public keys
-const secretKey = generateSecretKey();
-const publicKey = getPublicKey(secretKey);
-
-console.log('Secret Key:', secretKey);
-console.log('Public Key:', publicKey);
-
-// Create and verify an event
-const event = finalizeEvent(
-    {
-        kind: 1,
-        created_at: Math.floor(Date.now() / 1000),
-        tags: [],
-        content: 'hello',
-    },
-    secretKey
-);
-
-const isEventValid = verifyEvent(event);
-console.log('Event is valid:', isEventValid);
-
 // Assign WebSocket implementation for nostr-tools
 // @ts-expect-error
 global.WebSocket = WebSocket;
